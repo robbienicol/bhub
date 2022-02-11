@@ -83,7 +83,7 @@ const TodoInputs = ({setTodoItem, todoItem, setFilteredList, filteredList}) => {
           }}
           className="flex-no-shrink p-2 border-2 rounded text-teal border-teal hover:text-white hover:bg-teal"
         >
-          clear
+          Clear
         </button>
       </div>
     </div>
