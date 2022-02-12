@@ -3,7 +3,7 @@ import React from "react"
 
 const ListItem = ({e, StrikeTodo, DelTodo}) => {
   return (
-    <div className="flex mb-4 items-center">
+    <div className=" flex mb-4 items-center">
       <Link
         href={{
           pathname: "/details",
@@ -17,7 +17,7 @@ const ListItem = ({e, StrikeTodo, DelTodo}) => {
         <a
           className={`${
             e.completed && `line-through`
-          } w-full text-grey-darkest cursor-pointer`}
+          } w-full text-grey-darkest cursor-pointer hover:bg-slate-100`}
         >
           {e.title}
         </a>
