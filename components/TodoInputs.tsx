@@ -23,10 +23,6 @@ const TodoInputs = ({setTodoItem, todoItem, setFilteredList, filteredList}) => {
       {title: todo, id: todoItem.length, completed: false},
       ...todoItem,
     ])
-    setFilteredList([
-      {title: todo, id: todoItem.length, completed: false},
-      ...filteredList,
-    ])
   }
   const searchItems = (searchValue: React.SetStateAction<string>) => {
     setSearch(searchValue)
