@@ -1,60 +1,67 @@
-import Link from "next/link"
 import React from "react"
 import ListItem from "./ListItem"
 
 const List = ({
-  todoItem,
+  todoItems,
   setTodoItem,
   filteredList,
   setFilteredList,
-  paginate,
-  paginateFiltered,
+  paginateTodoItems,
+  paginateFilteredList,
 }) => {
-  //this checks the todoItem array & the filtered array for the selected ID & filters (deletes) it.
-  const DelTodo = (f: {title?: string; id?: number}) => {
-    const filtered = todoItem.filter((ids: {id: number}) => f.id !== ids.id)
-    setTodoItem(filtered)
-    const delFromSearch = filteredList.filter(
-      (ids: {id: number}) => f.id !== ids.id
+  //this checks the todoItems array & the filtered array for the selected ID & filters (deletes) it.
+  const deleteTodo = (f: {title?: string; id?: number}) => {
+    const filter = todoItems?.filter((ids: {id: number}) => f.id !== ids.id)
+    setTodoItem(filter)
+    const deleteFromSearch = filteredList?.filter(
+      (ids: {id: number}) => f?.id !== ids?.id
     )
-    setFilteredList(delFromSearch)
+    setFilteredList(deleteFromSearch)
   }
   //this is a loop that checks for the selected ID and mutates the object by flipping the completed boolean onClick.
-  const StrikeTodo = (f: {
+  const strikeTodo = (f: {
     title?: string
     id?: number
     completed?: boolean
   }) => {
-    for (const obj of todoItem) {
-      if (obj.id === f.id) {
+    for (const obj of todoItems) {
+      if (obj?.id === f?.id) {
         obj.completed = !obj.completed
         break
       }
     }
-    setTodoItem([...todoItem])
+    setTodoItem([...todoItems])
   }
   return (
     <div>
-      {filteredList.length < 1
-        ? paginate.map(
+      {filteredList?.length < 1
+        ? paginateTodoItems?.map(
             (
-              e: {id: number; title: string; completed?: boolean},
+              e: {id?: number; title?: string; completed?: boolean},
               i: number
             ) => {
               return (
                 <div key={i}>
-                  <ListItem e={e} DelTodo={DelTodo} StrikeTodo={StrikeTodo} />
+                  <ListItem
+                    e={e}
+                    deleteTodo={deleteTodo}
+                    strikeTodo={strikeTodo}
+                  />
                 </div>
               )
             }
           )
-        : paginateFiltered.map(
+        : paginateFilteredList.map(
             (
-              e: {id: number; title: string; completed?: boolean},
+              e: {id?: number; title?: string; completed?: boolean},
               i: number
             ) => (
               <div key={i}>
-                <ListItem e={e} DelTodo={DelTodo} StrikeTodo={StrikeTodo} />
+                <ListItem
+                  e={e}
+                  deleteTodo={deleteTodo}
+                  strikeTodo={strikeTodo}
+                />
               </div>
             )
           )}

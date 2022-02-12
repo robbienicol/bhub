@@ -4,6 +4,9 @@ import React from "react"
 
 const Details = () => {
   const router = useRouter()
+  React.useEffect(() => {
+    Object.keys(router?.query).length === 0 && router.push("/")
+  }, [])
   return (
     <div className="flex items-center justify-center min-h-screen from-blue-100 via-blue-300 to-blue-500 bg-gradient-to-br">
       <div className="h-100 w-full flex items-center justify-center bg-teal-lightest font-sans">

@@ -2,24 +2,32 @@ import React from "react"
 import List from "../components/List.tsx"
 import axios from "axios"
 import TodoInputs from "../components/TodoInputs.tsx"
-import LoadMore from "../components/LoadMore.tsx"
+import LoadMoreTodosButton from "../components/LoadMoreTodosButton.tsx"
 
 export default function Home() {
   const [filteredList, setFilteredList] = React.useState([])
-  const [todoItem, setTodoItem] = React.useState([])
+  const [todoItems, setTodoItem] = React.useState([])
   const [loadMore, setLoadMore] = React.useState(10)
-  const paginate = todoItem.slice(0, loadMore)
-  const paginateFiltered = filteredList.slice(0, loadMore)
+  const [loading, setLoading] = React.useState(false)
+  const paginateTodoItems = todoItems.slice(0, loadMore)
+  const paginateFilteredList = filteredList.slice(0, loadMore)
 
+  async function fetchListofTodos() {
+    try {
+      setLoading(true)
+      const todosResponse = await axios.get(
+        "https://jsonplaceholder.typicode.com/todos/"
+      )
+      if (todosResponse) {
+        setLoading(false)
+        setTodoItem(todosResponse.data)
+      }
+    } catch (error) {
+      alert(error)
+    }
+  }
   React.useEffect(() => {
-    axios
-      .get("https://jsonplaceholder.typicode.com/todos/")
-      .then((res) => {
-        setTodoItem(res.data)
-      })
-      .catch((err) => {
-        console.log(err)
-      })
+    fetchListofTodos()
   }, [])
 
   return (
@@ -33,23 +41,23 @@ export default function Home() {
             <TodoInputs
               filteredList={filteredList}
               setFilteredList={setFilteredList}
-              todoItem={todoItem}
+              todoItems={todoItems}
               setTodoItem={setTodoItem}
             />
           </div>
-          <List
-            paginateFiltered={paginateFiltered}
-            paginate={paginate}
-            setFilteredList={setFilteredList}
-            filteredList={filteredList}
-            setTodoItem={setTodoItem}
-            todoItem={todoItem}
-          />
-          <LoadMore
-            loadMore={loadMore}
-            setLoadMore={setLoadMore}
-            todoItem={todoItem}
-          />
+          {loading === true ? (
+            <p>Loading! </p>
+          ) : (
+            <List
+              paginateFilteredList={paginateFilteredList}
+              paginateTodoItems={paginateTodoItems}
+              setFilteredList={setFilteredList}
+              filteredList={filteredList}
+              setTodoItem={setTodoItem}
+              todoItems={todoItems}
+            />
+          )}
+          <LoadMoreTodosButton loadMore={loadMore} setLoadMore={setLoadMore} />
         </div>
       </div>
     </div>
