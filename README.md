@@ -9,7 +9,7 @@ clone the project, npm i the dependencies
 npm run dev
 
 
-Todolist by Robert Nicol for benifitHub 
+Todolist by Robert Nicol for benefitHub 
 
 Click on the todolist Text to head to the details page. 
 
