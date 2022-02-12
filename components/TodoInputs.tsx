@@ -3,14 +3,14 @@ import React from "react"
 const TodoInputs = ({setTodoItem, todoItem, setFilteredList, filteredList}) => {
   const [search, setSearch] = React.useState<string>("")
   const [todo, setTodo] = React.useState<string>("")
-  //this button handles sorting from A to Z
+  //this handles sorting from A to Z
   const AtoZ = () => {
     setTodoItem([...todoItem].sort((a, b) => a.title.localeCompare(b.title)))
     setFilteredList(
       [...filteredList].sort((a, b) => a.title.localeCompare(b.title))
     )
   }
-  //this button handles sorting from Z to A
+  //this handles sorting from Z to A
   const ZtoA = () => {
     setTodoItem([...todoItem].sort((a, b) => b.title.localeCompare(a.title)))
     setFilteredList(
@@ -18,6 +18,7 @@ const TodoInputs = ({setTodoItem, todoItem, setFilteredList, filteredList}) => {
     )
   }
   const addTodo = () => {
+    //this adds a new object to the array
     setTodoItem([
       {title: todo, id: todoItem.length, completed: false},
       ...todoItem,
@@ -29,7 +30,8 @@ const TodoInputs = ({setTodoItem, todoItem, setFilteredList, filteredList}) => {
   }
   const searchItems = (searchValue: React.SetStateAction<string>) => {
     setSearch(searchValue)
-    const filtered = todoItem.filter(
+    //this filters the todoItems and filters the objects that are not similar onChange
+    const filtered = todoItem?.filter(
       (item: {[s: string]: unknown} | ArrayLike<unknown>) => {
         return Object.values(item)
           .join("")
@@ -37,7 +39,6 @@ const TodoInputs = ({setTodoItem, todoItem, setFilteredList, filteredList}) => {
           .includes(search.toLowerCase())
       }
     )
-
     setFilteredList(filtered)
   }
 
