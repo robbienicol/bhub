@@ -19,3 +19,4 @@ OVERVIEW:
 i used TailwindCSS to handling the styling to save some time, and becuase i think its a great way to style efficently. i have the main API where i do an axios request in index.tsx .
 
 
+![screencapture-localhost-3000-2022-02-12-11_12_58](https://user-images.githubusercontent.com/59029959/153719002-6b8490af-9dd1-427e-a4e0-26fef5833ebe.png)
