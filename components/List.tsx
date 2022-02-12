@@ -35,7 +35,7 @@ const List = ({
   }
   return (
     <div>
-      {filteredList.length <= 1
+      {filteredList.length < 1
         ? paginate.map(
             (
               e: {id: number; title: string; completed?: boolean},

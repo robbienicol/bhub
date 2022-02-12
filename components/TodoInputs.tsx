@@ -40,6 +40,11 @@ const TodoInputs = ({setTodoItem, todoItem, setFilteredList, filteredList}) => {
       }
     )
     setFilteredList(filtered)
+
+    console.log(filtered)
+    searchValue.length > 0 && filtered.length === 0
+      ? setSearch("No results found !")
+      : null
   }
 
   return (
