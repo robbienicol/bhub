@@ -13,3 +13,9 @@ Todolist by Robert Nicol for benifitHub
 
 Click on the todolist Text to head to the details page. 
 
+
+OVERVIEW:
+
+i used TailwindCSS to handling the styling to save some time, and becuase i think its a great way to style efficently. i have the main API where i do an axios request in index.tsx .
+
+
